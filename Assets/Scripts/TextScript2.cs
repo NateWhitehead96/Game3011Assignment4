@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class TextScript : MonoBehaviour
+public class TextScript2 : MonoBehaviour
 {
     public Text text1;
     public Text text2;
     public Text text3;
     public Text text4;
+    public Text text5;
 
     public Text HintText;
     public Text TimeRemaining;
@@ -26,14 +27,15 @@ public class TextScript : MonoBehaviour
     private float Timer = 0;
     private float EndTime = 2.5f;
     private bool Counting = true;
-    private string[] possibleItems = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    private string[] possibleItems = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
-    private string[] Answer = new string[4];
+    private string[] Answer = new string[5];
 
     private bool firstStop = false;
     private bool secondStop = false;
     private bool thirdStop = false;
     private bool fourthStop = false;
+    private bool fifthStop = false;
 
     private int Difficulty;
 
@@ -41,6 +43,7 @@ public class TextScript : MonoBehaviour
     int item2 = 1;
     int item3 = 1;
     int item4 = 1;
+    int item5 = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,39 +52,42 @@ public class TextScript : MonoBehaviour
         Difficulty = Random.Range(1, 4);
         if (Difficulty == 1)
         {
-            Answer[0] = "N";
-            Answer[1] = "A";
-            Answer[2] = "T";
-            Answer[3] = "E";
-            HintText.text = "The passcode is the creators name.";
+            Answer[0] = "P";
+            Answer[1] = "I";
+            Answer[2] = "Z";
+            Answer[3] = "Z";
+            Answer[4] = "A";
+            HintText.text = "The passcode is a baked pie of Italian origin usually topped with meat and cheese.";
         }
         if (Difficulty == 2)
         {
-            Answer[0] = "S";
-            Answer[1] = "I";
-            Answer[2] = "Z";
-            Answer[3] = "E";
-            HintText.text = "The passcode is the physical dimensions, proportions, magnitude, or extent of an object.";
+            Answer[0] = "C";
+            Answer[1] = "R";
+            Answer[2] = "O";
+            Answer[3] = "W";
+            Answer[4] = "N";
+            HintText.text = "The passcode is a thing that only kings and queens wear on their head.";
         }
         if (Difficulty == 3)
         {
-            Answer[0] = "R";
-            Answer[1] = "I";
-            Answer[2] = "S";
-            Answer[3] = "K";
-            HintText.text = "The passcode is the possibility of suffering harm or loss; danger.";
+            Answer[0] = "M";
+            Answer[1] = "O";
+            Answer[2] = "V";
+            Answer[3] = "I";
+            Answer[4] = "E";
+            HintText.text = "The passcode is something that you watch that is a long sequence of images displayed rapidly.";
         }
         item1 = Random.Range(0, 26);
         item2 = Random.Range(0, 26);
         item3 = Random.Range(0, 26);
         item4 = Random.Range(0, 26);
+        item5 = Random.Range(0, 26);
         tries += SkillSystem.Instance.Level;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
         CompareAnswer();
         UpdateTexts();
         if (Timer >= EndTime)
@@ -90,10 +96,11 @@ public class TextScript : MonoBehaviour
             item2++;
             item3++;
             item4++;
+            item5++;
             if (!firstStop)
             {
                 //int randItem = Random.Range(0, possibleItems.Length);
-                if(item1 >= 26)
+                if (item1 >= 26)
                 {
                     item1 = 0;
                 }
@@ -126,16 +133,22 @@ public class TextScript : MonoBehaviour
                 }
                 text4.text = possibleItems[item4];
             }
+            if (!fifthStop)
+            {
+                //int randItem = Random.Range(0, possibleItems.Length);
+                if (item5 >= 26)
+                {
+                    item5 = 0;
+                }
+                text5.text = possibleItems[item5];
+            }
             Timer = 0;
         }
-        if(Counting)
+        if (Counting)
         {
             Timer += Time.deltaTime;
         }
     }
-
-    // button functions to stop the letters and quicken the letter's rotations
-
     public void OnFirstLetter()
     {
         firstStop = true;
@@ -157,11 +170,17 @@ public class TextScript : MonoBehaviour
         EndTime -= .5f;
     }
 
+    public void OnFithLetter()
+    {
+        fifthStop = true;
+        EndTime -= .5f;
+    }
+
     public void TryAgain()
     {
         int randomPuzzle = Random.Range(0, 2);
         SkillSystem.Instance.Level++;
-        if (randomPuzzle == 0)
+        if(randomPuzzle == 0)
         {
             SceneManager.LoadScene("Game");
         }
@@ -180,24 +199,25 @@ public class TextScript : MonoBehaviour
     {
         if (Difficulty == 1)
         {
-            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3]
-                && firstStop && secondStop && thirdStop && fourthStop)
+            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3] && text5.text == Answer[4]
+                && firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
                 HintText.text = "That is correct! You have successfully hacked in.";
                 Restart.gameObject.SetActive(true);
                 StopButton.gameObject.SetActive(true);
                 Counting = false;
             }
-            if (firstStop && secondStop && thirdStop && fourthStop)
+            if (firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
-                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3])
+                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3] || text5.text != Answer[4])
                 {
-                    HintText.text = "That is wrong! You have to try again. The password is the creators name.";
+                    HintText.text = "That is wrong! You have to try again. The password is a baked pie of Italian origin usually topped with meat and cheese.";
                     tries--;
                     firstStop = false;
                     secondStop = false;
                     thirdStop = false;
                     fourthStop = false;
+                    fifthStop = false;
                     EndTime = 2.5f;
                     FindObjectOfType<ShakeBehaviour>().Shake();
                 }
@@ -205,24 +225,25 @@ public class TextScript : MonoBehaviour
         }
         if (Difficulty == 2)
         {
-            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3]
-                && firstStop && secondStop && thirdStop && fourthStop)
+            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3] && text5.text == Answer[4]
+                && firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
                 HintText.text = "That is correct! You have successfully hacked in.";
                 Restart.gameObject.SetActive(true);
                 StopButton.gameObject.SetActive(true);
                 Counting = false;
             }
-            if (firstStop && secondStop && thirdStop && fourthStop)
+            if (firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
-                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3])
+                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3] || text5.text != Answer[4])
                 {
-                    HintText.text = "That is wrong! You have to try again. The password is the physical dimensions of an object.";
+                    HintText.text = "That is wrong! You have to try again. The password is something worn by kings and queens.";
                     tries--;
                     firstStop = false;
                     secondStop = false;
                     thirdStop = false;
                     fourthStop = false;
+                    fifthStop = false;
                     EndTime = 2.5f;
                     FindObjectOfType<ShakeBehaviour>().Shake();
                 }
@@ -230,24 +251,25 @@ public class TextScript : MonoBehaviour
         }
         if (Difficulty == 3)
         {
-            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3]
-                && firstStop && secondStop && thirdStop && fourthStop)
+            if (text1.text == Answer[0] && text2.text == Answer[1] && text3.text == Answer[2] && text4.text == Answer[3] && text5.text == Answer[4]
+                && firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
                 HintText.text = "That is correct! You have successfully hacked in.";
                 Restart.gameObject.SetActive(true);
                 StopButton.gameObject.SetActive(true);
                 Counting = false;
             }
-            if (firstStop && secondStop && thirdStop && fourthStop)
+            if (firstStop && secondStop && thirdStop && fourthStop && fifthStop)
             {
-                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3])
+                if (text1.text != Answer[0] || text2.text != Answer[1] || text3.text != Answer[2] || text4.text != Answer[3] || text5.text != Answer[4])
                 {
-                    HintText.text = "That is wrong! You have to try again. The password is possibily of suffering harm or loss, also a name of a board game.";
+                    HintText.text = "That is wrong! You have to try again. The password is a sequence of images displayed rapidly.";
                     tries--;
                     firstStop = false;
                     secondStop = false;
                     thirdStop = false;
                     fourthStop = false;
+                    fifthStop = false;
                     EndTime = 2.5f;
                     FindObjectOfType<ShakeBehaviour>().Shake();
                 }
@@ -261,17 +283,17 @@ public class TextScript : MonoBehaviour
         TimeRemaining.text = minutes.ToString() + ":" + seconds.ToString("#00");
         DifficultyText.text = "Difficulty: " + Difficulty.ToString();
 
-        if(seconds <= 0)
+        if (seconds <= 0)
         {
             minutes--;
             seconds = 60;
         }
-        if(Counting)
+        if (Counting)
         {
             seconds -= Time.deltaTime;
         }
 
-        if(tries == 0)
+        if (tries == 0)
         {
             Counting = false;
             HintText.text = "You're out of tries, better luck next time!";
@@ -281,6 +303,7 @@ public class TextScript : MonoBehaviour
             secondStop = true;
             thirdStop = true;
             fourthStop = true;
+            fifthStop = true;
         }
     }
 }

@@ -14,17 +14,18 @@ public class CanvasManager : MonoBehaviour
         }
         else
             Instance = this;
+        
     }
 
     public Canvas StartCavnas;
     public Canvas GameCanvas;
 
-    private bool isPlaying = false;
+    public bool isPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
         GameCanvas.gameObject.SetActive(false);
-        if (isPlaying)
+        if (SkillSystem.Instance.Playing)
         {
             GameCanvas.gameObject.SetActive(true);
             StartCavnas.gameObject.SetActive(false);
@@ -39,6 +40,7 @@ public class CanvasManager : MonoBehaviour
             GameCanvas.gameObject.SetActive(true);
             StartCavnas.gameObject.SetActive(false);
             isPlaying = true;
+            SkillSystem.Instance.Playing = true;
         }
     }
 }

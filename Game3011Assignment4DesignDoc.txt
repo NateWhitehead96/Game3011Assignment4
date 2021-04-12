@@ -1,0 +1,23 @@
+Game3011 Assignment 4 Hacking Minigame Design Document
+
+Theme:
+The theme of my hacking game is of a literal sense where you must answer the riddle and stop the
+letters in the right order to spell out the answer. Drawing from inspiration from the Matrix,
+I created this puzzler hacking game. I think it would fit well into any game that would require
+a hacking game and change the answers to something appropriate to the game.
+
+System:
+The game is quite simple in design. The letters go through the entire alphabet and stop when you
+hit the button below it. The goal is to figure out the word to the riddle and spell it out with
+the given number of characters.
+
+Difficulty:
+There are 3 levels of difficulty and 2 different "modes". The difficulty is how challenging the
+riddle/puzzle is. Then the added difficulty of modes being either figuring out the 4 letter word,
+or a 5 letter word.
+
+Skill:
+It was hard to find the right balance of where skill should be involved. So this was defaulted to
+be everytime you pass a puzzle you gain an extra chance/try to guess. If the game was more flush
+I would like to add more words then maybe enable a hint or free letter skill mechanic however at
+this stage that would make the game too easy.
