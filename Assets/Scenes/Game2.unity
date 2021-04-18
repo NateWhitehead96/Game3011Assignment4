@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7631001214887792055, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7631001215265530920, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -229.3
@@ -387,6 +391,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 93.081
       objectReference: {fileID: 0}
+    - target: {fileID: 7631001216210278655, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1015211285}
+    - target: {fileID: 7631001216210278655, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Stop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631001216210278655, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TextScript2, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7631001216405777600, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -115.7
@@ -394,6 +410,18 @@ PrefabInstance:
     - target: {fileID: 7631001216405777600, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 93.081
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631001216568359932, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631001216568359932, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631001216568359932, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7631001216568359932, guid: 371dfe61ee01a8f4ca47fb5fcd596c26, type: 3}
       propertyPath: m_RaycastTarget
